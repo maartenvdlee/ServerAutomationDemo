@@ -15,11 +15,11 @@ variables:
   - name: azure_resource_group_name
     value: "ServerProvisionTesting-$(Build.BuildId)"
   - name: subscription_id
-    value: "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+    value: "bb8364b1-a3cb-476c-8474-8c4031deafc1"
   - name: application_id
-    value: "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+    value: "c7101a15-9b79-4c07-a9ce-084ceaf1f4a7"
   - name: tenant_id
-    value: "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+    value: "a5932838-bccc-4c5d-a109-7a8d19990f17"
 
 steps:
   - task: PowerShell@2
@@ -29,7 +29,7 @@ steps:
   - task: PowerShell@2
     inputs:
       targetType: "inline"
-      script: New-AzResourceGroup -Name $(azure_resource_group_name) -Location eastus -Force
+      script: New-AzResourceGroup -Name $(azure_resource_group_name) -Location westeurope -Force
   - task: Pester@0
     inputs:
       scriptFolder: "@{Path='$(System.DefaultWorkingDirectory)/server.template.tests.ps1'; Parameters=@{ResourceGroupName='$(azure_resource_group_name)'}}"
